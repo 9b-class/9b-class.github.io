@@ -41,7 +41,7 @@
         }
 
         .header h1 {
-            font-family: 'Kaushan Script', cursive;
+            /*font-family: 'Kaushan Script', cursive;*/
             font-size: 24px;
             margin: 0;
         }
@@ -194,7 +194,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>9b Class Portal</h1>
+        <h1>9Б сынып</h1>
         <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
         <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
     </div>
@@ -202,11 +202,11 @@
         <!-- Days will be dynamically added here -->
     </div>
     <div class="main-content">
-        <h1 id="main-title">Welcome to 9b Class Portal</h1>
+        <h1 id="main-title">9Б сынып партолына қош келдіңіз</h1>
         <div class="content-section" id="combined-section">
-            <h2>Details</h2>
+            <h2>Мәлеметтер</h2>
             <ul id="details-list">
-Keste kùnin tańdau ùshin «☰» basyńyz!
+Кесте күнін таңдау үшін «☰» басыңыз!
                 <!-- Combined schedule and homework items will be dynamically inserted here -->
             </ul>
         </div>
@@ -238,9 +238,9 @@ Keste kùnin tańdau ùshin «☰» basyńyz!
 
             if (scheduleData) {
                 const monthOrder = [
-                    "Qańtar", "Aqpan", "Nauryz", "Sàýir", "Mamyr", "Mausym",
-                    "Shilde", "Tamyz", "Qyrkùıek", "Qazan", "Qarasha", "Jeltoqsan"
-                ];
+    "Қаңтар", "Ақпан", "Наурыз", "Сәуір", "Мамыр", "Маусым",
+    "Шілде", "Тамыз", "Қыркүйек", "Қазан", "Қараша", "Желтоқсан"
+];
 
                 const sortedDays = Object.keys(scheduleData).sort((a, b) => {
                     const monthA = monthOrder.indexOf(scheduleData[a].month.trim());
@@ -270,15 +270,15 @@ Keste kùnin tańdau ùshin «☰» basyńyz!
 
             if (scheduleData && scheduleData[day]) {
                 const { month, subjects, homework } = scheduleData[day];
-                mainTitle.textContent = `${month} ${day} Keste jáne Úı tapsyrmasy`;
+                mainTitle.textContent = `${month} ${day} Кесте және Үй тапсырмасы`;
 
                 detailsList.innerHTML = subjects.map((subject, index) => {
                     const homeworkText = homework[index] ? `: ${homework[index]}` : '';
                     return `<li><strong>${subject}</strong>${homeworkText}</li>`;
                 }).join('');
             } else {
-                mainTitle.textContent = `Details for Day ${day}`;
-                detailsList.innerHTML = '<li>No data available for this day.</li>';
+                mainTitle.textContent = `Күн мәлеметтері${day}`;
+                detailsList.innerHTML = '<li>Осы күні деректер қолжетімді емес.</li>';
             }
 
             document.getElementById('sidebar').classList.remove('active');
