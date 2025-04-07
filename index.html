@@ -169,7 +169,7 @@
         @media (max-width: 768px) {
             .sidebar {
                 width: 95%;
-                height: auto;
+                height: auto%;
                 position: fixed;
                 bottom: 0;
                 left: 0;
@@ -239,12 +239,20 @@
             const scheduleData = await fetchSchedule();
 
             if (scheduleData) {
+                const today = new Date();
                 const monthOrder = [
-    "Қаңтар", "Ақпан", "Наурыз", "Сәуір", "Мамыр", "Маусым",
-    "Шілде", "Тамыз", "Қыркүйек", "Қазан", "Қараша", "Желтоқсан"
-];
+                    "Қаңтар", "Ақпан", "Наурыз", "Сәуір", "Мамыр", "Маусым",
+                    "Шілде", "Тамыз", "Қыркүйек", "Қазан", "Қараша", "Желтоқсан"
+                ];
 
-                const sortedDays = Object.keys(scheduleData).sort((a, b) => {
+                const sortedDays = Object.keys(scheduleData).filter(day => {
+                    const { month } = scheduleData[day];
+                    const monthIndex = monthOrder.indexOf(month.trim());
+                    const scheduleDate = new Date(today.getFullYear(), monthIndex, parseInt(day));
+
+                    // Include today's date and future dates
+                    return scheduleDate >= new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                }).sort((a, b) => {
                     const monthA = monthOrder.indexOf(scheduleData[a].month.trim());
                     const monthB = monthOrder.indexOf(scheduleData[b].month.trim());
 
