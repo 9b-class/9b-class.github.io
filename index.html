@@ -215,35 +215,6 @@
     </div>
 
     <script>
-        async function sendMessageToTelegram(message) {
-    const botToken = '7105666030:AAE-YdgolF4eifV1GH-T1m-PEBC1-PlacvE'; // Боттың токенін осында қойыңыз
-    const chatId = '-4769651321'; // Чат ID-ін осында қойыңыз
-    const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-    try {
-        const response = await fetch(telegramApiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                chat_id: chatId,
-                text: message,
-            }),
-        });
-
-        if (response.ok) {
-            console.log('Message sent successfully!');
-        } else {
-            console.error('Failed to send message:', response.statusText);
-        }
-    } catch (error) {
-        console.error('Error sending message:', error);
-    }
-}
-
-// Хатты жіберу үшін функцияны шақырыңыз
-sendMessageToTelegram('Жаңа қолданушы кірді!');
         async function fetchSchedule() {
             try {
                 const response = await fetch('schedule.json');
