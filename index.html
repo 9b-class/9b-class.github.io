@@ -48,7 +48,7 @@
             margin: 0;
         }
 
-        .menu-toggle, .dark-mode-toggle {
+        .menu-toggle, .dark-mode-toggle, .comment {
             font-size: 20px;
             cursor: pointer;
             background: none;
@@ -62,6 +62,11 @@
         .dark-mode-toggle {
             padding-right: 45px;
             margin-left: 10px; /* Move slightly to the left */
+        }
+        
+        .comment {
+          padding-right: -100px;
+            margin-left: 40px;
         }
 
         .menu-toggle:hover, .dark-mode-toggle:hover {
@@ -198,6 +203,7 @@
     <div class="header">
         <h1>9Б сынып</h1>
         <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <button class="comment" type="submit" onclick="commentfunc()">💬</button>
         <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
     </div>
     <div class="sidebar" id="sidebar">
@@ -225,6 +231,15 @@
                 return null;
             }
         }
+        function commentfunc() {
+    let usercomment = prompt("Пікіріңізді қалдырыңыз:");
+    if (usercomment) {
+        usercomment = "Сізге жаңа хабарландыру: %0A" + usercomment;
+        fetch('https://api.telegram.org/bot7105666030:AAE-YdgolF4eifV1GH-T1m-PEBC1-PlacvE/sendMessage?chat_id=6861956601&text=' + usercomment)
+            .then(() => alert("Пікіріңіз үшін рақмет!"))
+            .catch(() => alert("Қате болды."));
+    }
+}
 
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('active');
