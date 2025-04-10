@@ -232,12 +232,15 @@
             }
         }
         function commentfunc() {
+          let username = prompt("Есіміңіз:")
+          if (username !== null) {
     let usercomment = prompt("Пікіріңізді қалдырыңыз:");
     if (usercomment) {
-        usercomment = "Сізге жаңа хабарландыру: %0A" + usercomment;
+        usercomment = "Сізге жаңа хабарландыру: %0A" + username + ": " + usercomment;
         fetch('https://api.telegram.org/bot7105666030:AAE-YdgolF4eifV1GH-T1m-PEBC1-PlacvE/sendMessage?chat_id=6861956601&text=' + usercomment)
             .then(() => alert("Пікіріңіз үшін рақмет!"))
             .catch(() => alert("Қате болды."));
+    }
     }
 }
 
