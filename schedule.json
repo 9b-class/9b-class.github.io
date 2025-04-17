@@ -183,7 +183,7 @@
         "§25 түсінік",
         ""
     ],
-    "absentees": []
+    "absentees": ["Гүлназым ⚠️"]
   },
   "18": {
     "month": "Сәуір",
@@ -201,13 +201,13 @@
   },
   "19": {
     "month": "Сәуір",
-    "subjects": [],
+    "subjects": ["Демалыс"],
     "homework": [],
     "absentees": []
   },
   "20": {
     "month": "Сәуір",
-    "subjects": [],
+    "subjects": ["Демалыс"],
     "homework": [],
     "absentees": []
   },
