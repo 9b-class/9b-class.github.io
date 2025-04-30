@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
     <style>
         body{
             background-color: #1A1A2E;
@@ -49,8 +47,31 @@
             padding: -20px;
         }
 
-        
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px;
+            }
+
+            .header ul {
+                gap: 10px;
+                width: 100%;
+            }
+
+            .header ul li {
+                font-size: 14px;
+            }
+
+            .logo {
+                width: 120px;
+            }
+
+            #map {
+                height: 80vh;
+            }
+        }
     </style>
+</head>
+<body>
     <div class="screen">
         <div class="header">
             <img class="logo" width="200px" src="https://www.almaty-marathon.kz/userdata/partners/partners_873/image.png" alt="">

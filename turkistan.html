@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turkistan</title>
-</head>
-<body>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -61,7 +59,7 @@
         }
 
         .turkistan h3{
-            color: #ED7E31;
+            color: #FFF;
             text-align: center;
         }
 
@@ -85,11 +83,47 @@
             min-height: 20vh;
         }
 
-        
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px;
+            }
+
+            .header ul {
+                
+                gap: 10px;
+                width: 100%;
+            }
+
+            .header ul li {
+                font-size: 14px;
+            }
+
+            .logo {
+                width: 120px;
+            }
+
+            .turkistan {
+                padding: 15px;
+                margin: 10px;
+            }
+
+            .turkistan h3 {
+                font-size: 18px;
+            }
+
+            .turkistan p {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+            .turkistan img {
+                width: 100%;
+                height: auto;
+            }
+        }
     </style>
-
-
-
+</head>
+<body>
     <div class="screen">
         <div class="header">
             <img class="logo" width="200px" src="https://www.almaty-marathon.kz/userdata/partners/partners_873/image.png" alt="">
