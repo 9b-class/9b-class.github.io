@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+        body{
+            background-color: #1A1A2E;
+            color: #FFFFFF;
+            font-family: Noto Sans, sans-serif;
+            margin: 0;
+        }
+
+        input, textarea, select, button{
+            font-family: Noto Sans, sans-serif;
+            font-size: 16px;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #ED7E31;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .header{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: #16213E;
+        }
+
+        .header ul{
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .header ul li{
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .header ul li:hover{
+            color: #ED7E31;
+            text-decoration: underline;
+        }
+
+        .logo{
+            width: 150px;
+            padding: -20px;
+        }
+
+        .turkistan{
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            margin: 20px;
+            background-color: #1A1A2E;
+            border-radius: 10px;
+        }
+
+        .turkistan h3{
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .turkistan p{
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .turkistan img{
+            width: 50%;
+
+            height: auto;
+            margin-left: 25%;
+            border-radius: 10px;
+        }
+
+        .turkistan img:hover{
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+
+
+        
+
+        .screen{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 20vh;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0px;
+            }
+
+            .header ul {
+                
+                gap: 5px;
+                width: 100%;
+            }
+
+            .header ul li {
+                font-size: 9px;
+            }
+
+            .logo {
+                width: 90px;
+            }
+
+            .turkistan {
+                padding: 15px;
+                margin: 10px;
+            }
+
+            .turkistan h3 {
+                font-size: 18px;
+            }
+
+            .turkistan p {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+            .turkistan img {
+                width: 100%;
+                height: auto;
+                margin-left: 0;
+            }
+
+
+        }
