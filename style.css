@@ -139,7 +139,8 @@
             }
 
             .header ul {
-                font-size: 10px;
+                gap: 5px;
+                font-size: 9px;
                 margin: 0 auto; /* Орталықтандыру */
                 padding: 0; /* Ішкі бос орынды алып тастау */
                 text-align: center; /* Мәтінді орталыққа туралау */
