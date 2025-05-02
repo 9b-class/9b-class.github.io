@@ -107,7 +107,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-<div id="map" style="height: 100vh;"></div>
+<div id="map" style="height: 90vh;"></div>
+
+
 
 <script>
   var map = L.map('map').setView([43.297699, 68.271108], 14);
@@ -127,9 +129,19 @@
   var AlFarabi = L.marker([43.295031714099586, 68.27750934034154]).addTo(map);
   AlFarabi.bindPopup("<b>Аль-Фараби</b> <button style='float:right;' onclick=\"location.href='https://maps.app.goo.gl/gJtLPUiYxeWdma4L7'\";>360º</button> <br> <img width=\"200px\" class=\"main-img\" src=\"https://img.inform.kz/kazinform-photobank/media/2023-09-14/c66120e6-beda-4d50-aca7-cd8aa3ff3ef5.webp\" alt=\"\">").openPopup();
 
+  var NewCity = L.marker([43.272674953102204, 68.3431152502641]).addTo(map);
+    NewCity.bindPopup("<b>Жаңа қала</b> <button style='float:right;' onclick=\"location.href='https://maps.app.goo.gl/2v7x5G4Z1Y6a8g3F7'\";>360º</button> <br> <img width=\"200px\" class=\"main-img\" src=\"newcity.jpg\" alt=\"\">").openPopup();
+
+  var MuzSaray = L.marker([43.26878509102815, 68.34256178221364]).addTo(map);
+    MuzSaray.bindPopup("<b>Мұз Сарайы</b> <button style='float:right;' onclick=\"location.href='https://maps.app.goo.gl/2v7x5G4Z1Y6a8g3F7'\";>360º</button> <br> <img width=\"200px\" class=\"main-img\" src=\"https://bassport.kz/storage/2023/06/23/E7F8YUWnuFbDmVRLyg5vNvtDoulcUY9dvdsP9R0L.jpg\" alt=\"\">").openPopup();
+
   var QojaAxmet = L.marker([43.297699, 68.271108]).addTo(map);
   QojaAxmet.bindPopup("<b>Қожа Ахмет Ясауи</b> <button style='float:right;' onclick=\"location.href='https://maps.app.goo.gl/EUxjECkE87o2Hte4A'\";>360º</button> <br> <img width=\"200px\" class=\"main-img\" src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRPiX4jEnFKgDzoq6Fa7xjWORKyBK2eZqozg&s\" alt=\"\">").openPopup();
 
+  const CopyRight = document.createElement("h3");
+            CopyRight.className = "turkistan";
+            CopyRight.innerHTML = "<p style='width:50%; float: left;'>© 2025 Түркістан қаласы</p> <a style='width:50%; float: right; text-align:right; color:#fff; list-style: none;' href='https://maps.app.goo.gl/VxJekCr5MBWUEHFu8'><p>Түркістандағы ресторандар</p></a>";
+            document.body.appendChild(CopyRight);
   
   function AqMeshit() {
     
