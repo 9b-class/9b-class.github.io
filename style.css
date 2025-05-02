@@ -90,6 +90,11 @@
             border-radius: 10px;
         }
 
+        .turkistan a {
+            color: #ED7E31;
+            font-weight: medium;
+        }
+
         .turkistan h3{
             font-size: 24px;
             margin-bottom: 10px;
@@ -99,6 +104,7 @@
         .turkistan p{
             font-size: 16px;
             line-height: 1.6;
+            margin: 8px;
         }
 
         .turkistan img{
@@ -133,13 +139,16 @@
             }
 
             .header ul {
-                
-                gap: 5px;
-                width: 100%;
+                font-size: 10px;
+                margin: 0 auto; /* Орталықтандыру */
+                padding: 0; /* Ішкі бос орынды алып тастау */
+                text-align: center; /* Мәтінді орталыққа туралау */
             }
-
+        
             .header ul li {
-                font-size: 9px;
+                text-align: center; /* Мәтінді орталыққа туралау */
+                margin: 0; /* Сыртқы бос орынды алып тастау */
+                padding: 0; /* Ішкі бос орынды алып тастау */
             }
 
             .logo {

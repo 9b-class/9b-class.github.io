@@ -161,7 +161,20 @@
             const container = document.getElementById('absentees-container');
 
             if (scheduleData) {
-                Object.keys(scheduleData).forEach(day => {
+                // Күндерді айға байланысты сұрыптау
+                const sortedDays = Object.keys(scheduleData).sort((a, b) => {
+                    const monthA = scheduleData[a].month;
+                    const monthB = scheduleData[b].month;
+
+                    // Сәуір айын жоғарыға шығару
+                    if (monthA === "Сәуір" && monthB !== "Сәуір") return -1;
+                    if (monthA !== "Сәуір" && monthB === "Сәуір") return 1;
+
+                    // Егер айлар бірдей болса, күндерді сан бойынша сұрыптау
+                    return parseInt(a) - parseInt(b);
+                });
+
+                sortedDays.forEach(day => {
                     const { month, absentees } = scheduleData[day];
                     if (absentees && absentees.length > 0) {
                         const daySection = document.createElement('div');
@@ -172,6 +185,11 @@
                                 ${absentees.map(student => `<li>${student}</li>`).join('')}
                             </ul>
                         `;
+                        container.appendChild(daySection);
+                    } else {
+                        const daySection = document.createElement('div');
+                        daySection.classList.add('day-section');
+                        daySection.innerHTML = `<h2>${month} ${day}</h2><p>Келмегендер жоқ.</p>`;
                         container.appendChild(daySection);
                     }
                 });
