@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>Hello there!</p>
+  <input type="text" placeholder="Enter your name" id="nameInput"> <br>
+  <input type="password" placeholder="Enter your password" id="passInput"> <br>
+  <button onclick="TestInput()">submit</button> <br><br>
+  <p id="text"></p>
+
+
+  <script>
+    function TestInput() {
+      let name = document.getElementById('nameInput').value;
+      let password = document.getElementById('passInput').value;
+      let text = document.getElementById('text');
+      if (name == "Ramazan") {
+        if (password == "1234") {
+          text.innerHTML = '<a href="c.html">Welcome Mr</a>';
+        } else {
+          text.innerHTML = 'error password';
+        }
+      } else {
+        text.innerHTML = 'not found a name';
+      }
+    }
+  </script>
+
+
+</body>
+</html>
