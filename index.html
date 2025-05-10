@@ -1,319 +1,325 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>9b Class Portal</title>
-    <!--<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:wght@400;700&display=swap" rel="stylesheet"> -->
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <style>
-        /* Global Styles */
-        :root {
-            --primary-color: #4CAF50;
-            --secondary-color: #2C3E50;
-            --background-light: #F4F4F9;
-            --background-dark: #1C1C1E;
-            --text-light: #FFFFFF;
-            --text-dark: #2C3E50;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>9b-class</title>
+  <style>
+    
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--background-light);
-            color: var(--text-dark);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            overflow-x: hidden;
-        }
+    /* Басты экран */
+    .screen {
+      padding: 15px;
+      background-color: white;
+      text-align: center;
+    }
 
-        /* Header */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background-color: var(--secondary-color);
-            color: var(--text-light);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    .logo {
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-        .header h1 {
-            /*font-family: 'Kaushan Script', cursive;*/
-            font-size: 24px;
-            margin: 0;
-        }
+    /* Батырма: экранда бекітілген */
+    .menu-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
 
-        .menu-toggle, .dark-mode-toggle, .comment {
-            font-size: 20px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+    /* Күнтізбе */
+    .calendar-base {
+      margin: 20px auto;
+      padding: 10px;
+      background-color: white;
+      border-radius: 10px;
+      max-width: 90%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        .dark-mode-toggle {
-            padding-right: 45px;
-            margin-left: 10px; /* Move slightly to the left */
-        }
-        
-        .comment {
-          padding-right: -100px;
-            margin-left: 40px;
-        }
+    .year {
+      font-size: 24px;
+      color: #333;
+      font-weight: bold;
+      text-align: center;
+    }
 
-        .menu-toggle:hover, .dark-mode-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+    .months {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .days {
+      display: flex;
+      justify-content: space-around;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .num-dates {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .num-dates span {
+      padding: 5px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .num-dates span:hover {
+      background-color: #e0e0e0;
+      cursor: pointer;
+    }
+
+    .active-day {
+      background-color: #2ECC71;
+      color: white;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+
+    .container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+      height: auto;
+      overflow-y: auto;
+    }
+
+    .overlay h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: #333333;
+      font-weight: 600;
+    }
+
+    .overlay h3 {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #555555;
+      line-height: 1.5;
+    }
+
+    .overlay button {
+      display: block;
+      margin: 15px auto 0;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #ffffff;
+      background-color: #333333;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .overlay button:hover {
+      background-color: #555555;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+  /* Мобильді құрылғыларға арналған стильдер */
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 16px;
+    }
+
+    .menu-button {
+      font-size: 20px;
+    }
+
+    .calendar-base {
+      padding: 10px;
+    }
+
+    .year {
+      font-size: 20px;
+    }
+
+    .months, .days {
+      font-size: 14px;
+    }
+
+    .num-dates {
+      font-size: 12px;
+    }
+
+    .overlay {
+      width: 95%;
+      padding: 15px;
+    }
+
+    .overlay h2 {
+      font-size: 20px;
+    }
+
+    .overlay h3 {
+      font-size: 14px;
+    }
+
+    .overlay button {
+      font-size: 13px;
+      padding: 8px 16px;
+    }
+  }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const yearElement = document.querySelector(".year");
+      const currentYear = new Date().getFullYear();
+      yearElement.textContent = currentYear;
+
+      const today = new Date();
+      const todayDate = today.getDate();
+      const todayMonth = today.getMonth();
+      const todayDay = today.getDay(); // Sunday = 0, Monday = 1, etc.
+
+      // Highlight today's date
+      const numDatesContainer = document.querySelector(".num-dates");
+      const firstDayOfMonth = new Date(today.getFullYear(), todayMonth, 1).getDay();
+      const daysInMonth = new Date(today.getFullYear(), todayMonth + 1, 0).getDate();
+      const adjustedFirstDay = (firstDayOfMonth === 0 ? 7 : firstDayOfMonth) - 1; // Adjust for Monday start
+
+      numDatesContainer.innerHTML = "";
+
+      // Add empty slots for days before the first day of the month
+      for (let i = 0; i < adjustedFirstDay; i++) {
+        numDatesContainer.innerHTML += `<span></span>`;
+      }
+
+      // Add actual dates for the current month
+      for (let i = 1; i <= daysInMonth; i++) {
+        const dateClass = i === todayDate ? "active-day" : "";
+        numDatesContainer.innerHTML += `<span class="${dateClass}" onclick="Schedule(${i})">${i}</span>`;
+      }
+
+      // Highlight the current month
+      const months = document.querySelectorAll(".months span");
+      months.forEach((month, index) => {
+        month.style.fontWeight = index === todayMonth ? "bold" : "normal";
+        month.style.color = index === todayMonth ? "#2ECC71" : "#555";
+      });
+
+      // Adjust week to start on Monday and highlight the current day of the week
+      const daysElement = document.querySelector(".days");
+      const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+      daysElement.innerHTML = daysOfWeek
+        .map((day, index) => {
+          const isToday = index === (todayDay === 0 ? 6 : todayDay - 1); // Adjust for Monday start
+          return `<span style="font-weight: ${isToday ? "bold" : "normal"}; color: ${
+            isToday ? "#2ECC71" : "#666"
+          };">${day}</span>`;
+        })
+        .join("");
+    });
+    function Schedule(day) {
+      fetch("/schedule.json") 
+            .then(response => response.json())
+            .then(data => {
+              const subjects = data[String(day)];
+              const container = document.createElement("div");
+              container.className = "container";
+              const overlay = document.createElement("div");
+              overlay.className = "overlay";
+              overlay.innerHTML += `
+                <h2>${subjects.month}дың ${day}</h2>
+              `;
+              for (let i = 0; i < 7; i++) {
+                if (subjects.subjects[0] === "Демалыс") {
+                  document.body.removeChild(container);
+                } else if (subjects.homework[i] === "") {
+                  overlay.innerHTML += `
+                    <h3 >${subjects.subjects[i]}</h3>`;
+                    continue; }
+                overlay.innerHTML += `
+                  <h3 >${subjects.subjects[i]}: ${subjects.homework[i]}</h3>
+                `;
+              }
+              overlay.innerHTML += `
+                <button id="closeButton">Close</button>
+              `;
+              container.appendChild(overlay);
+              document.body.appendChild(container);
+              const closeButton = document.getElementById("closeButton");
+      closeButton.addEventListener("click", () => {
+        document.body.removeChild(container);});
+            })
+            .catch(error => {
+              console.error("Error fetching schedule:", error);
+              
+            });
         }
-
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: var(--secondary-color);
-            color: var(--text-light);
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            z-index: 1000; /* Ensure it stays above other elements */
-        }
-
-        .sidebar.active {
-            transform: translateX(0);
-        }
-
-        .sidebar .day {
-            font-size: 18px;
-            font-weight: bold;
-            background-color: var(--primary-color);
-            padding: 10px 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .sidebar .day:hover {
-            background-color: #45A049;
-            transform: scale(1.05);
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-left: 0;
-            padding: 20px;
-            padding-top: 70px; /* Adjust for fixed header */
-            transition: margin-left 0.3s ease;
-        }
-
-        @media (min-width: 769px) {
-            .sidebar.active + .main-content {
-                margin-left: 250px;
-            }
-        }
-
-        .main-content h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-        .content-section {
-            margin-bottom: 30px;
-        }
-
-        .content-section h2 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 5px;
-        }
-
-        .content-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .content-section ul li {
-            font-size: 16px;
-            background-color: var(--background-light);
-            margin: 8px 0;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .content-section ul li:hover {
-            background-color: #E0E0E0;
-            transform: translateX(5px);
-        }
-
-        /* Dark Mode */
-        .dark-mode {
-            --primary-color: #45A049;
-            --secondary-color: #1C1C1E;
-            --background-light: #1C1C1E;
-            --background-dark: #F4F4F9;
-            --text-light: #F4F4F9;
-            --text-dark: #FFFFFF;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 95%;
-                height: auto;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                transform: translateY(100%);
-                transition: transform 0.3s ease;
-                display: flex;
-                
-                flex-wrap: wrap;
-                justify-content: center;
-                padding: 10px;
-                box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            }
-
-            .sidebar.active {
-                transform: translateY(0);
-            }
-
-            .sidebar .day {
-                flex: 1 45%;
-                margin: 5px;
-            }
-        }
-    </style>
+  </script>
 </head>
 <body>
-    <div class="header">
-        <h1>9Б сынып</h1>
-        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-        <button class="comment" type="submit" onclick="commentfunc()">💬</button>
-        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+  
+  <div class="screen">
+    <div class="logo">9b-class</div>
+    <button class="menu-button" onclick="">☰</button>
+  </div>
+
+  <div class="calendar-base">
+    <div class="year"></div>
+    <div class="months">
+      <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span>
+      <span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
+      <span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
     </div>
-    <div class="sidebar" id="sidebar">
-        <!-- Days will be dynamically added here -->
+    <div class="days">
+      <!-- Adjusted dynamically via JavaScript -->
     </div>
-    <div class="main-content">
-        <h1 id="main-title">9Б сынып порталына қош келдіңіз!</h1>
-        <div class="content-section" id="combined-section">
-            <h2>Мәлеметтер</h2>
-            <ul id="details-list">
-Кесте күнін таңдау үшін «☰» басыңыз!
-                <!-- Combined schedule and homework items will be dynamically inserted here -->
-            </ul>
-        </div>
+    <div class="num-dates">
+      <!-- Adjusted dynamically via JavaScript -->
     </div>
+    <div class="schedule">
+    </div>
+  </div>
 
-    <script>
-        async function fetchSchedule() {
-            try {
-                const response = await fetch('schedule.json');
-                const scheduleData = await response.json();
-                return scheduleData;
-            } catch (error) {
-                console.error('Error fetching schedule:', error);
-                return null;
-            }
-        }
-        function commentfunc() {
-          
-    let usercomment = prompt("Пікіріңізді қалдырыңыз:");
-    if (usercomment) {
-        usercomment = "Сізге жаңа хабарландыру: %0A" + usercomment;
-        fetch('https://api.telegram.org/bot7105666030:AAE-YdgolF4eifV1GH-T1m-PEBC1-PlacvE/sendMessage?chat_id=6861956601&text=' + usercomment)
-            .then(() => alert("Пікіріңіз үшін рақмет!"))
-            .catch(() => alert("Қате болды."));
-    }
-    }
-
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-        }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-
-        async function populateSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const scheduleData = await fetchSchedule();
-
-            if (scheduleData) {
-                const today = new Date();
-                const monthOrder = [
-                    "Қаңтар", "Ақпан", "Наурыз", "Сәуір", "Мамыр", "Маусым",
-                    "Шілде", "Тамыз", "Қыркүйек", "Қазан", "Қараша", "Желтоқсан"
-                ];
-
-                const sortedDays = Object.keys(scheduleData).filter(day => {
-                    const { month } = scheduleData[day];
-                    const monthIndex = monthOrder.indexOf(month.trim());
-                    const scheduleDate = new Date(today.getFullYear(), monthIndex, parseInt(day));
-
-                    // Include today's date and future dates
-                    return scheduleDate >= new Date(today.getFullYear(), today.getMonth(), today.getDate());
-                }).sort((a, b) => {
-                    const monthA = monthOrder.indexOf(scheduleData[a].month.trim());
-                    const monthB = monthOrder.indexOf(scheduleData[b].month.trim());
-
-                    if (monthA === monthB) {
-                        return parseInt(a) - parseInt(b);
-                    }
-                    return monthA - monthB;
-                });
-
-                sidebar.innerHTML = sortedDays
-                    .map(day => {
-                        const { month } = scheduleData[day];
-                        return `<div class="day" onclick="selectDay(${day})">${month} ${day}</div>`;
-                    })
-                    .join('');
-            } else {
-                sidebar.innerHTML = '<div class="day">No data available</div>';
-            }
-        }
-
-        async function selectDay(day) {
-            const mainTitle = document.getElementById('main-title');
-            const detailsList = document.getElementById('details-list');
-            const scheduleData = await fetchSchedule();
-
-            if (scheduleData && scheduleData[day]) {
-                const { month, subjects, homework } = scheduleData[day];
-                mainTitle.textContent = `${month} ${day} Кесте және Үй тапсырмасы`;
-
-                detailsList.innerHTML = subjects.map((subject, index) => {
-                    const homeworkText = homework[index] ? `: ${homework[index]}` : '';
-                    return `<li><strong>${subject}</strong>${homeworkText}</li>`;
-                }).join('');
-            } else {
-                mainTitle.textContent = `Күн мәлеметтері${day}`;
-                detailsList.innerHTML = '<li>Осы күні деректер қолжетімді емес.</li>';
-            }
-
-            document.getElementById('sidebar').classList.remove('active');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => { // Set default theme to dark mode
-            populateSidebar();
-        });
-    </script>
 </body>
 </html>
