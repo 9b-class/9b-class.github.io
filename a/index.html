@@ -1,20 +1,325 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>9b-class</title>
+  <style>
+    
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    }
+
+    /* Басты экран */
+    .screen {
+      padding: 15px;
+      background-color: white;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* Батырма: экранда бекітілген */
+    .menu-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Күнтізбе */
+    .calendar-base {
+      margin: 20px auto;
+      padding: 10px;
+      background-color: white;
+      border-radius: 10px;
+      max-width: 90%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .year {
+      font-size: 24px;
+      color: #333;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .months {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .days {
+      display: flex;
+      justify-content: space-around;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .num-dates {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .num-dates span {
+      padding: 5px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .num-dates span:hover {
+      background-color: #e0e0e0;
+      cursor: pointer;
+    }
+
+    .active-day {
+      background-color: #2ECC71;
+      color: white;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+
+    .container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+      height: auto;
+      overflow-y: auto;
+    }
+
+    .overlay h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: #333333;
+      font-weight: 600;
+    }
+
+    .overlay h3 {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #555555;
+      line-height: 1.5;
+    }
+
+    .overlay button {
+      display: block;
+      margin: 15px auto 0;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #ffffff;
+      background-color: #333333;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .overlay button:hover {
+      background-color: #555555;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+  /* Мобильді құрылғыларға арналған стильдер */
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 16px;
+    }
+
+    .menu-button {
+      font-size: 20px;
+    }
+
+    .calendar-base {
+      padding: 10px;
+    }
+
+    .year {
+      font-size: 20px;
+    }
+
+    .months, .days {
+      font-size: 14px;
+    }
+
+    .num-dates {
+      font-size: 12px;
+    }
+
+    .overlay {
+      width: 95%;
+      padding: 15px;
+    }
+
+    .overlay h2 {
+      font-size: 20px;
+    }
+
+    .overlay h3 {
+      font-size: 14px;
+    }
+
+    .overlay button {
+      font-size: 13px;
+      padding: 8px 16px;
+    }
+  }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const yearElement = document.querySelector(".year");
+      const currentYear = new Date().getFullYear();
+      yearElement.textContent = currentYear;
+
+      const today = new Date();
+      const todayDate = today.getDate();
+      const todayMonth = today.getMonth();
+      const todayDay = today.getDay(); // Sunday = 0, Monday = 1, etc.
+
+      // Highlight today's date
+      const numDatesContainer = document.querySelector(".num-dates");
+      const firstDayOfMonth = new Date(today.getFullYear(), todayMonth, 1).getDay();
+      const daysInMonth = new Date(today.getFullYear(), todayMonth + 1, 0).getDate();
+      const adjustedFirstDay = (firstDayOfMonth === 0 ? 7 : firstDayOfMonth) - 1; // Adjust for Monday start
+
+      numDatesContainer.innerHTML = "";
+
+      // Add empty slots for days before the first day of the month
+      for (let i = 0; i < adjustedFirstDay; i++) {
+        numDatesContainer.innerHTML += `<span></span>`;
+      }
+
+      // Add actual dates for the current month
+      for (let i = 1; i <= daysInMonth; i++) {
+        const dateClass = i === todayDate ? "active-day" : "";
+        numDatesContainer.innerHTML += `<span class="${dateClass}" onclick="Schedule(${i})">${i}</span>`;
+      }
+
+      // Highlight the current month
+      const months = document.querySelectorAll(".months span");
+      months.forEach((month, index) => {
+        month.style.fontWeight = index === todayMonth ? "bold" : "normal";
+        month.style.color = index === todayMonth ? "#2ECC71" : "#555";
+      });
+
+      // Adjust week to start on Monday and highlight the current day of the week
+      const daysElement = document.querySelector(".days");
+      const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+      daysElement.innerHTML = daysOfWeek
+        .map((day, index) => {
+          const isToday = index === (todayDay === 0 ? 6 : todayDay - 1); // Adjust for Monday start
+          return `<span style="font-weight: ${isToday ? "bold" : "normal"}; color: ${
+            isToday ? "#2ECC71" : "#666"
+          };">${day}</span>`;
+        })
+        .join("");
+    });
+    function Schedule(day) {
+      fetch("/schedule.json") 
+            .then(response => response.json())
+            .then(data => {
+              const subjects = data[String(day)];
+              const container = document.createElement("div");
+              container.className = "container";
+              const overlay = document.createElement("div");
+              overlay.className = "overlay";
+              overlay.innerHTML += `
+                <h2>${subjects.month}дың ${day}</h2>
+              `;
+              for (let i = 0; i < 7; i++) {
+                if (subjects.subjects[0] === "Демалыс") {
+                  document.body.removeChild(container);
+                } else if (subjects.homework[i] === "") {
+                  overlay.innerHTML += `
+                    <h3 >${subjects.subjects[i]}</h3>`;
+                    continue; }
+                overlay.innerHTML += `
+                  <h3 >${subjects.subjects[i]}: ${subjects.homework[i]}</h3>
+                `;
+              }
+              overlay.innerHTML += `
+                <button id="closeButton">Close</button>
+              `;
+              container.appendChild(overlay);
+              document.body.appendChild(container);
+              const closeButton = document.getElementById("closeButton");
+      closeButton.addEventListener("click", () => {
+        document.body.removeChild(container);});
+            })
+            .catch(error => {
+              console.error("Error fetching schedule:", error);
+              
+            });
+        }
+  </script>
 </head>
 <body>
-    <button onclick="
-    let div = document.getElementById('modal'); 
-    div.style.display = 'block'; ">click me</button>
-    <div id="modal" style="background-color: rgb(192, 192, 192); color: white; display: none;" >
-        <p>hello world</p>
-        <button onclick="let div = document.getElementById('modal'); 
-                        div.style.display = 'none';">exit</button>
+  
+  <div class="screen">
+    <div class="logo">9b-class</div>
+    <button class="menu-button" onclick="">☰</button>
+  </div>
 
-    </div> <br>
-    <button>hi</button>
+  <div class="calendar-base">
+    <div class="year"></div>
+    <div class="months">
+      <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span>
+      <span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
+      <span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+    </div>
+    <div class="days">
+      <!-- Adjusted dynamically via JavaScript -->
+    </div>
+    <div class="num-dates">
+      <!-- Adjusted dynamically via JavaScript -->
+    </div>
+    <div class="schedule">
+    </div>
+  </div>
+
 </body>
 </html>
