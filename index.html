@@ -80,7 +80,7 @@
     }
 
     .num-dates span {
-      padding: 5px;
+      padding: 10px;
       border-radius: 5px;
       transition: background-color 0.3s, color 0.3s;
     }
@@ -92,6 +92,20 @@
 
     .active-day {
       background-color: #2ECC71;
+      color: white;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+
+    .active-day-holiday {
+      background-color: #ff7f17;
+      color: white;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+
+    .holiday {
+      background-color: #ffa964;
       color: white;
       border-radius: 50%;
       font-weight: bold;
@@ -252,7 +266,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const yearElement = document.querySelector(".year");
       const currentYear = new Date().getFullYear();
-      yearElement.textContent = currentYear;
+      yearElement.textContent = currentYear + ' May';
 
       const today = new Date();
       const todayDate = today.getDate();
@@ -274,7 +288,11 @@
 
       // Add actual dates for the current month
       for (let i = 1; i <= daysInMonth; i++) {
-        const dateClass = i === todayDate ? "active-day" : "";
+        let holiday = false;
+        if (i%7 === 4 || i%7 === 3) {
+          holiday = !holiday;
+        }
+        const dateClass = i === todayDate ? ( holiday ? "active-day-holiday" : "active-day") : (holiday ? "holiday" : "");
         numDatesContainer.innerHTML += `<span class="${dateClass}" onclick="Schedule(${i})">${i}</span>`;
       }
 
@@ -290,9 +308,13 @@
       const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
       daysElement.innerHTML = daysOfWeek
         .map((day, index) => {
+          let holiday = true;
+          if (index === 0 || index === 6) {
+            holiday = !holiday;
+          }
           const isToday = index === (todayDay === 0 ? 6 : todayDay - 1); // Adjust for Monday start
           return `<span style="font-weight: ${isToday ? "bold" : "normal"}; color: ${
-            isToday ? "#2ECC71" : "#666"
+            isToday ? (holiday ? "#2ECC71" : "#ff7f17") : "#666"
           };">${day}</span>`;
         })
         .join("");
@@ -312,6 +334,10 @@
               for (let i = 0; i < 7; i++) {
                 if (subjects.subjects[0] === "Демалыс") {
                   document.body.removeChild(container);
+                } else if (subjects.subjects[0] === "Мереке") {
+                  overlay.innerHTML += `
+                    <h3 >${subjects.homework[0]}</h3>`;
+                    break;
                 } else if (subjects.homework[i] === "") {
                   overlay.innerHTML += `
                     <h3 >${subjects.subjects[i]}</h3>`;
@@ -355,12 +381,8 @@
   </div>
 
   <div class="calendar-base">
-    <div class="year"></div>
-    <div class="months">
-      <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span>
-      <span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
-      <span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
-    </div>
+    <div class="year"></div><br>
+    
     <div class="days">
       <!-- Adjusted dynamically via JavaScript -->
     </div>

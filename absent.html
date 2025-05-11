@@ -80,7 +80,7 @@
     }
 
     .num-dates span {
-      padding: 5px;
+      padding: 10px;
       border-radius: 5px;
       transition: background-color 0.3s, color 0.3s;
     }
@@ -252,7 +252,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const yearElement = document.querySelector(".year");
       const currentYear = new Date().getFullYear();
-      yearElement.textContent = currentYear;
+      yearElement.textContent = currentYear + ' May';
 
       const today = new Date();
       const todayDate = today.getDate();
@@ -355,12 +355,8 @@
   </div>
 
   <div class="calendar-base">
-    <div class="year"></div>
-    <div class="months">
-      <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span>
-      <span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
-      <span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
-    </div>
+    <div class="year"></div><br>
+    
     <div class="days">
       <!-- Adjusted dynamically via JavaScript -->
     </div>
