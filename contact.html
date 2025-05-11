@@ -46,46 +46,6 @@
       max-width: 90%;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-
-    .menu {
-      display: none;
-      position: fixed;
-      justify-content: center;
-      align-self: center;
-      align-items: center;
-      text-align: center;
-      top: 0;
-      left: 0;
-      background-color: #fff;
-      width: 100vw;
-      height: 100vh;
-    }
-
-    .menu ul li {
-      list-style-type: none;
-      padding: 0;
-      transform: translateY(-400%) translateX(-50%);
-    }
-
-    .home {
-      text-decoration: underline;
-      text-decoration-color: #2ECC71;
-      text-underline-offset: 1px;
-      text-decoration-thickness: 2px;
-      padding-bottom: 5px;
-    }
-
-    .menu li:hover {
-      background-color: #e0e0e0;
-      border-radius: 4px;
-    }
-
-    .menu a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-    }
-
     .inputer {
       margin: 10px 0;
       display: flex;
@@ -131,18 +91,27 @@
         font-size: 16px;
         transition: background-color 0.3s ease;
     }
+    
+    .submit-holiday {
+        width: 70%;
+        font-size: 16px;
+        font-weight: bold;
+        margin-left: 15%;
+        background-color: #ff7f17;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
 
     .submit:hover {
       background-color: #28a745;
     }
 
     /* Анимация */
-    .menu ul li {
-      animation: fadeIn 0.5s forwards;
-      opacity: 0;
-      transform: translate(-50%, -60%);
-    }
-
     .container {
       position: fixed;
       top: 0;
@@ -199,14 +168,69 @@
       background-color: #555555;
     }
 
+    .menu {
+      display: none;
+      position: fixed;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .menu ul li {
+      list-style-type: none;
+      padding: 0;
+      
+    }
+
+
+    .menu ul li {
+      animation: fadeIn 0.5s forwards;
+      opacity: 0;
+    }
+
+    .menu ul {
+      transform: translateX(-10%) translateY(-75%);
+    }
+
+
+    .home {
+      text-decoration: underline;
+      text-decoration-color: #2ECC71;
+      text-underline-offset: 1px;
+      text-decoration-thickness: 2px;
+      padding-bottom: 5px;
+    }
+
+    .home-holiday {
+      text-decoration: underline;
+      text-decoration-color: #ff7f17;
+      text-underline-offset: 1px;
+      text-decoration-thickness: 2px;
+      padding-bottom: 5px;
+    }
+
+    .menu li:hover {
+      background-color: #e0e0e0;
+      border-radius: 4px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translate(-50%, -60%);
+        transform: translate(-0%, -10%);
       }
       to {
         opacity: 1;
-        transform: translate(-50%, -50%);
+        transform: translate(-0%, -00%);
       }
     }
 
@@ -238,8 +262,10 @@
 <body>
   <div class="menu" id="menu">
     <ul>
-        <li><a href="index.html">Home</a></li>
-      <li class="home" onclick="Menu()">Contact</li>
+        <a href="index.html"><li>Home</li></a>
+        <a href="lesson.html"><li>Lesson Schedule</li></a>
+
+      <li id="home" onclick="Menu()">Contact</li>
     </ul>
   </div>
   <div class="screen">
@@ -263,15 +289,17 @@
         <textarea name="message" id="message" class="message"></textarea>
     </div>
 
-    <button type="submit" class="submit">Submit</button>
+    <button type="submit" class="submit" id="submit">Submit</button>
 
 </body>
 </html>
   <script>
+    
     function validateField(input, type) {
       const value = input.value.trim();
+      let holiday = false;
       let errorMessage = '';
-
+      
       if (type === 'name' && !value) {
         errorMessage = 'Name is required.';
       } else if (type === 'email') {
@@ -357,4 +385,13 @@
         errors.forEach(error => (error.textContent = ''));
       }
     });
+    const today = new Date();
+    const todayDay = today.getDay();
+    let holiday = true;
+    if (todayDay === 6 || todayDay === 0 ){
+      holiday = !holiday;
+    }
+    
+    home = document.getElementById('home');
+    home.className = holiday ? 'home' : 'home-holiday';
   </script>
