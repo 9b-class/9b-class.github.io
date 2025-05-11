@@ -1,43 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>9b-class</title>
+  <style>
+    
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    }
+
+    /* Басты экран */
+    .screen {
+      padding: 15px;
+      background-color: white;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* Батырма: экранда бекітілген */
+    .menu-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Күнтізбе */
+    .calendar-base {
+      margin: 20px auto;
+      padding: 10px;
+      background-color: white;
+      border-radius: 10px;
+      max-width: 90%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu {
+      display: none;
+      position: fixed;
+      justify-content: center;
+      align-self: center;
+      align-items: center;
+      text-align: center;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .menu ul li {
+      list-style-type: none;
+      padding: 0;
+      transform: translateY(-400%) translateX(-50%);
+    }
+
+    .home {
+      text-decoration: underline;
+      text-decoration-color: #2ECC71;
+      text-underline-offset: 1px;
+      text-decoration-thickness: 2px;
+      padding-bottom: 5px;
+    }
+
+    .menu li:hover {
+      background-color: #e0e0e0;
+      border-radius: 4px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .inputer {
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .inputer label {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .inputer input,
+    .inputer textarea {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .inputer input:focus,
+    .inputer textarea:focus {
+      border-color: #2ECC71;
+      outline: none;
+    }
+
+    .inputer textarea {
+      resize: none;
+      height: 100px;
+    }
+    .submit {
+        width: 70%;
+        font-size: 16px;
+        font-weight: bold;
+        margin-left: 15%;
+        background-color: #2ECC71;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .submit:hover {
+      background-color: #28a745;
+    }
+
+    /* Анимация */
+    .menu ul li {
+      animation: fadeIn 0.5s forwards;
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+
+    .container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+      height: auto;
+      overflow-y: auto;
+    }
+
+    .overlay h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: #333333;
+      font-weight: 600;
+    }
+
+    .overlay h3 {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #555555;
+      line-height: 1.5;
+    }
+
+    .overlay button {
+      display: block;
+      margin: 15px auto 0;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #ffffff;
+      background-color: #333333;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .overlay button:hover {
+      background-color: #555555;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+  /* Мобильді құрылғыларға арналған стильдер */
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 16px;
+    }
+
+    .menu-button {
+      font-size: 20px;
+    }
+
+    .calendar-base {
+      padding: 10px;
+    }
+}
+
+  </style>
+  <script>
+        let onoroff = false;
+        function Menu() {
+          onoroff = !onoroff;
+          const menu = document.getElementById('menu');
+          menu.style.display = onoroff ? 'flex' : 'none';
+        }
+  </script>
 </head>
 <body>
-    <div class="screen">
-        <div class="header">
-            <img class="logo" width="200px" src="https://www.almaty-marathon.kz/userdata/partners/partners_873/image.png" alt="">
-            <ul>
-                <li onclick="location.href='turkistan.html'">Басты бет</li>
-                <li onclick="location.href='history.html'">Тарихы</li>
-                <li onclick="location.href='places.html'">Көрнекті орындар</li>
-                <li onclick="location.href='map.html'">Карта</li>
-                <li onclick="location.href='contact.html'">Байланыс</li>
-            </ul>
-        </div>
-    </div>
-        <div class="turkistan">
-            <h3>Байланыс</h3>
-            <p>Түркістан қаласы туралы сұрақтарыңыз болса, төмендегі форманы толтырыңыз:</p>
-            <form action="#" method="post">
-                <label for="name">Атыңыз:</label><br>
-                <input class="input" type="text" id="name" name="name" required><br><br>
-                <label for="email">Электрондық пошта:</label><br>
-                <input class="input" type="email" id="email" name="email" required><br><br>
-                <label for="message">Хабарлама:</label><br>
-                <textarea class="input" id="message" name="message" rows="5" required></textarea><br><br>
-                <button type="submit">Жіберу</button>
-            </form>
+  <div class="menu" id="menu">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+      <li class="home" onclick="Menu()">Contact</li>
+    </ul>
+  </div>
+  <div class="screen">
+    <div class="logo">9b-class</div>
+    <button class="menu-button" onclick="Menu()">☰</button>
+  </div>
 
-            <script>
-                const CopyRight = document.createElement("h3");
-            CopyRight.className = "turkistan";
-            CopyRight.innerHTML = "<p>© 2025 Түркістан қаласы</p>"
-            document.body.appendChild(CopyRight);
-            </script>
+  <div class="calendar-base">
+    <div class="inputer">
+        <label for="name">Name</label>
+        <input name="name" id="name" class="name" type="text">
     </div>
+
+    <div class="inputer">
+        <label for="email">Email</label>
+        <input name="email" id="email" class="email" type="text">
+  </div>
+
+    <div class="inputer">
+        <label for="message">Message</label>
+        <textarea name="message" id="message" class="message"></textarea>
+    </div>
+
+    <button type="submit" class="submit">Submit</button>
+
 </body>
 </html>
+  <script>
+    function validateField(input, type) {
+      const value = input.value.trim();
+      let errorMessage = '';
+
+      if (type === 'name' && !value) {
+        errorMessage = 'Name is required.';
+      } else if (type === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!value) {
+          errorMessage = 'Email is required.';
+        } else if (!emailRegex.test(value)) {
+          errorMessage = 'Valid email is required.';
+        }
+      } else if (type === 'message' && !value) {
+        errorMessage = 'Message is required.';
+      }
+
+      // Display or clear error message
+      let error = input.parentElement.querySelector('.error');
+      if (!error) {
+        error = document.createElement('div');
+        error.className = 'error';
+        error.style.color = 'red';
+        error.style.fontSize = '12px';
+        error.style.marginTop = '2px';
+        error.style.fontFamily = 'Kanit, sans-serif';
+        error.style.fontWeight = '400';
+        error.style.textAlign = 'left';
+        error.style.width = '92.5%';
+        error.style.marginLeft = '10%';
+        error.style.display = 'flex';
+        error.style.justifyContent = 'flex-start';
+        error.style.alignItems = 'center';
+
+
+        input.parentElement.appendChild(error);
+      }
+      error.textContent = errorMessage;
+    }
+
+    document.querySelector('.name').addEventListener('input', (e) => validateField(e.target, 'name'));
+    document.querySelector('.email').addEventListener('input', (e) => validateField(e.target, 'email'));
+    document.querySelector('.message').addEventListener('input', (e) => validateField(e.target, 'message'));
+
+    const submitButton = document.querySelector('.submit');
+    submitButton.addEventListener('click', () => {
+      const nameInput = document.querySelector('.name');
+      const emailInput = document.querySelector('.email');
+      const messageInput = document.querySelector('.message');
+
+      validateField(nameInput, 'name');
+      validateField(emailInput, 'email');
+      validateField(messageInput, 'message');
+
+      const errors = document.querySelectorAll('.error');
+      const hasErrors = Array.from(errors).some(error => error.textContent);
+
+      if (!hasErrors) {
+        console.log('Form submitted:', {
+          name: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          message: messageInput.value.trim(),
+        });
+        const commentUser = "Name: " + nameInput.value.trim() + "%0A" +
+          "Email: " + emailInput.value.trim() + "%0A" +
+          "Message: " + messageInput.value.trim();
+        fetch('https://api.telegram.org/bot7105666030:AAE-YdgolF4eifV1GH-T1m-PEBC1-PlacvE/sendMessage?chat_id=6861956601&text=' + commentUser)
+            .then(() => {
+                const container = document.createElement("div");
+                container.className = "container";
+                const overlay = document.createElement("div");
+                overlay.className = "overlay";
+                overlay.innerHTML = `
+                <h3>Пікіріңіз үшін рақмет!</h3>
+                <button id="closeButton">Close</button>
+              `
+                container.appendChild(overlay);
+                document.body.appendChild(container);
+                const closeButton = document.getElementById("closeButton");
+                closeButton.addEventListener("click", () => {
+                document.body.removeChild(container);});
+            })
+            .catch(() => alert("Қате болды."));
+        nameInput.value = '';
+        emailInput.value = '';
+        messageInput.value = '';
+        errors.forEach(error => (error.textContent = ''));
+      }
+    });
+  </script>

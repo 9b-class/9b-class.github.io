@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="screen">
+        <div class="header">
+            <img class="logo" width="200px" src="https://www.almaty-marathon.kz/userdata/partners/partners_873/image.png" alt="">
+            <ul>
+                <li onclick="location.href='turkistan.html'">Басты бет</li>
+                <li onclick="location.href='history.html'">Тарихы</li>
+                <li onclick="location.href='places.html'">Көрнекті орындар</li>
+                <li onclick="location.href='map.html'">Карта</li>
+                <li onclick="location.href='contact.html'">Байланыс</li>
+            </ul>
+        </div>
+    </div>
+        <div class="turkistan">
+            <h3>Байланыс</h3>
+            <p>Түркістан қаласы туралы сұрақтарыңыз болса, төмендегі форманы толтырыңыз:</p>
+            <form action="#" method="post">
+                <label for="name">Атыңыз:</label><br>
+                <input class="input" type="text" id="name" name="name" required><br><br>
+                <label for="email">Электрондық пошта:</label><br>
+                <input class="input" type="email" id="email" name="email" required><br><br>
+                <label for="message">Хабарлама:</label><br>
+                <textarea class="input" id="message" name="message" rows="5" required></textarea><br><br>
+                <button type="submit">Жіберу</button>
+            </form>
+
+            <script>
+                const CopyRight = document.createElement("h3");
+            CopyRight.className = "turkistan";
+            CopyRight.innerHTML = "<p>© 2025 Түркістан қаласы</p>"
+            document.body.appendChild(CopyRight);
+            </script>
+    </div>
+</body>
+</html>
