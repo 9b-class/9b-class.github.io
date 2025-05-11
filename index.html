@@ -304,11 +304,6 @@
       }
 
       // Highlight the current month
-      const months = document.querySelectorAll(".months span");
-      months.forEach((month, index) => {
-        month.style.fontWeight = index === todayMonth ? "bold" : "normal";
-        month.style.color = index === todayMonth ? "#2ECC71" : "#555";
-      });
 
       // Adjust week to start on Monday and highlight the current day of the week
       const daysElement = document.querySelector(".days");
