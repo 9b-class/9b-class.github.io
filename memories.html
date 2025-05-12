@@ -193,6 +193,35 @@
         font-size: 12px;
       }
     }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -208,6 +237,30 @@
       const menu = document.getElementById('menu');
       menu.style.display = onoroff ? 'flex' : 'none';
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const base = document.getElementById('base');
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      const closeModal = document.getElementById('modal-close');
+
+      base.addEventListener('click', function (e) {
+        if (e.target.tagName === 'IMG') {
+          modal.style.display = 'flex';
+          modalImg.src = e.target.src;
+        }
+      });
+
+      closeModal.addEventListener('click', function () {
+        modal.style.display = 'none';
+      });
+
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    });
   </script>
 </head>
 <body>
@@ -226,7 +279,12 @@
 
   <div class="calendar-base" id="base">
     <img src="img/img_1.jpg" alt=""> <img src="img/img_2.jpg" alt=""> <img src="img/img_3.jpg" alt=""> <img src="img/img_4.jpg" alt=""> <img src="img/img_5.jpg" alt=""> <img src="img/img_6.jpg" alt=""> <img src="img/img_7.jpg" alt=""> <img src="img/img_8.jpg" alt=""> <img src="img/img_9.jpg" alt=""> <img src="img/img_10.jpg" alt=""> <img src="img/img_11.jpg" alt=""> <img src="img/img_12.jpg" alt=""> <img src="img/img_13.jpg" alt=""> <img src="img/img_14.jpg" alt=""> <img src="img/img_15.jpg" alt=""> <img src="img/img_16.jpg" alt=""> <img src="img/img_17.jpg" alt=""> <img src="img/img_18.jpg" alt=""> <img src="img/img_19.jpg" alt=""> <img src="img/img_20.jpg" alt=""> <img src="img/img_21.jpg" alt=""> <img src="img/img_22.jpg" alt=""> <img src="img/img_26.jpg" alt=""> <img src="img/img_24.jpg" alt=""> <img src="img/img_25.jpg" alt=""> <img src="img/img_23.jpg" alt="">
+  </div>
 
+  <!-- Modal for displaying images -->
+  <div class="modal" id="modal">
+    <span class="modal-close" id="modal-close">&times;</span>
+    <img class="modal-content" id="modal-img" alt="Expanded view">
   </div>
 </body>
 </html>
