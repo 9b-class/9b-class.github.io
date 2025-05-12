@@ -37,13 +37,31 @@
     }
 
     .calendar-base {
-      margin: 30px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 12px;
-      max-width: 90%;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     /* Скролл қосу */
+     
+  }
+
+  .calendar-base img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .calendar-base img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
 
     .calendar-base h2 {
       font-size: 22px;
@@ -177,59 +195,12 @@
     }
   </style>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const baseEl = document.getElementById('base');
-      const today = new Date();
-      const day = today.getDate();
-      let holiday = true;
-      // Display greeting with today's date
-      baseEl.innerHTML = `<h2>Мамырдың ${day}-cі</h2>`;
-
-      // Fetch and display schedule
-      fetch("/schedule.json")
-        .then(response => response.json())
-        .then(data => {
-          const subjects = data[String(day)];
-          const scheduleDiv = document.createElement("div");
-          scheduleDiv.className = "schedule";
-
-          for (let i = 0; i < 7; i++) {
-            if (subjects.subjects[0] === "Демалыс") {
-                holiday = !holiday;
-                baseEl.innerHTML = `<h2 style="color:#ff7f17;">Мамырдың ${day}-і</h2>`;
-              scheduleDiv.innerHTML += `
-                <div class="schedule-card">
-                  <h3>Демалыс күні</h3>
-                </div>`;
-              break;
-            } else if (subjects.subjects[0] === "Мереке") {
-              scheduleDiv.innerHTML += `
-                <div class="schedule-card">
-                  <h3>Мереке</h3>
-                  <span>${subjects.homework[0]}</span>
-                </div>`;
-              break;
-            } else {
-              const subjectClass = subjects.subjects[i].toLowerCase() === "html" ? "subject" : "";
-              const homeworkClass = subjects.subjects[i].toLowerCase() === "html" ? "homework" : "";
-              scheduleDiv.innerHTML += `
-                <div class="schedule-card">
-                  <h3>${subjects.subjects[i]}</h3>
-                  <span class="${subjectClass}">${subjects.subjects[i]}</span>
-                  <span class="${homeworkClass}">${subjects.homework[i]}</span>
-                </div>`;
-            }
-          }
-          baseEl.appendChild(scheduleDiv);
-        })
-        .catch(error => {
-          console.error("Error fetching schedule:", error);
-          baseEl.innerHTML += `<h3>Кестені жүктеу кезінде қате орын алды.</h3>`;
+    document.addEventListener('DOMContentLoaded', function() {
+        const base = document.getElementById('base');
+        base.innerHTML += `
+            
+        `
         });
-        let home = document.getElementById('home');
-    home.className = holiday ? 'home' : 'home-holiday';
-    });
-
 
     let onoroff = false;
     function Menu() {
@@ -242,9 +213,9 @@
 <body>
   <div class="menu" id="menu">
     <ul>
-      <li onclick="Menu()" class="home" id="home">Home</li>
+      <a href="index.html"><li>Home</li></a>
       <a href="lesson.html"><li>Lesson Schedule</li></a>
-      <a href="memories.html"><li>Memories</li></a>
+      <li onclick="Menu()" class="home" id="home">Memories</li>
       <a href="contact.html"><li>Contact</li></a>
     </ul>
   </div>
@@ -254,7 +225,8 @@
   </div>
 
   <div class="calendar-base" id="base">
-    
+    <img src="img/img_1.jpg" alt=""> <img src="img/img_2.jpg" alt=""> <img src="img/img_3.jpg" alt=""> <img src="img/img_4.jpg" alt=""> <img src="img/img_5.jpg" alt=""> <img src="img/img_6.jpg" alt=""> <img src="img/img_7.jpg" alt=""> <img src="img/img_8.jpg" alt=""> <img src="img/img_9.jpg" alt=""> <img src="img/img_10.jpg" alt=""> <img src="img/img_11.jpg" alt=""> <img src="img/img_12.jpg" alt="">
+
   </div>
 </body>
 </html>
