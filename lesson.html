@@ -319,7 +319,7 @@
       const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
       daysElement.innerHTML = daysOfWeek
         .map((day, index) => {
-          let holiday = true;
+          let holiday = false;
           if (index === 0 || index === 6) {
             holiday = !holiday;
           }
