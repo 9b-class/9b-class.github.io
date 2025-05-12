@@ -148,7 +148,7 @@
     <script>
         async function fetchSchedule() {
             try {
-                const response = await fetch('schedule.json');
+                const response = await fetch('/schedule.json');
                 return await response.json();
             } catch (error) {
                 console.error('Error fetching schedule:', error);
